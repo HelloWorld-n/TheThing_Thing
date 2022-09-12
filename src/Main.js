@@ -68,9 +68,6 @@ process.stdin.on('keypress', (ch, key) => {
 	if (key && !key.ctrl && !key.shift && key.name === 'i') {
 		if (Math.random() > 0.999) {
 			data.CLICK += 1
-			if (debug) {
-				console.log("INCREASED")
-			}
 		}
 	}
 });
