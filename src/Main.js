@@ -11,7 +11,7 @@ const CHANCE_BIG = 0.225
 const baseData = require('./data.js')
 let data = {}
 
-let debug = 0
+let debug = false
 process.argv.forEach((val, index) => {
 	if (index > 1) {
 		if (val === "--debug") {
