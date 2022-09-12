@@ -66,7 +66,7 @@ process.stdin.on('keypress', (ch, key) => {
 		process.exit()
 	}
 	if (key && !key.ctrl && !key.shift && key.name === 'i') {
-		if (Math.random() > 0.999) {
+		if (Math.random() < 0.001) {
 			data.CLICK += 1
 		}
 	}
