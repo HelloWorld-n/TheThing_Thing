@@ -2,6 +2,7 @@
 
 const fs = require('fs');
 const Combinator = require('./Combinator.js')
+const AppUtil = require('./AppUtil.js')
 const TM_GOAL = 3
 const KEYPRESS_WAIT = 250
 const CHANCE_SMALL = 0.001
@@ -27,12 +28,38 @@ try {
 data = Combinator.combine(data, baseData)
 
 
-function displayData(arg) {
-	let result = `{\n`
+function displayData(arg, applyTerminalColors = false) {
+	const termColor_basicText = (
+		(applyTerminalColors) ?
+			AppUtil.applyBackgroundColor(0, 0, 0) + AppUtil.applyForegroundColor(127, 189, 189) :
+			""
+	)
+	const termColor_key = (
+		(applyTerminalColors) ?
+			AppUtil.applyBackgroundColor(0, 0, 0) + AppUtil.applyForegroundColor(235, 189, 64) :
+			""
+	)
+	const termColor_value = (
+		(applyTerminalColors) ?
+			AppUtil.applyBackgroundColor(0, 0, 0) + AppUtil.applyForegroundColor(189, 64, 235) :
+			""
+	)
+	const termColor_end = (
+		(applyTerminalColors) ?
+			AppUtil.resetTermColor() :
+			""
+	)
+	let result = `${termColor_basicText}{\n`
 	for (let key in arg) {
-		result += `\t${key}: ${arg[key]},\n`
+		result += (
+			(
+				`\t${termColor_key}${key}${termColor_basicText}: `
+			) + (
+				`${termColor_value}${arg[key]}${termColor_basicText}, \n`
+			)
+		)
 	}
-	result += `}\n`
+	result += `}${termColor_end}\n`
 	return result
 }
 
@@ -57,7 +84,7 @@ function improve() {
 setInterval(() => {
 	improve()
 	console.log("\u001Bc")
-	console.log(displayData(data))
+	console.log(displayData(data, true))
 }, 1000)
 
 
