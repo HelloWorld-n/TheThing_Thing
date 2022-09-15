@@ -112,7 +112,7 @@ process.stdin.on('keypress', (ch, key) => {
 		if (Math.random() < CHANCE_AVERAGE) {
 			data.CLICK += 1
 			while (Math.random() < CHANCE_SMALL * Math.sqrt(data.CLICK)) {
-				data.click += 1
+				data.CLICK += 1
 			}
 		}
 	}
