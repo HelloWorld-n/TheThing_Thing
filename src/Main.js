@@ -109,8 +109,8 @@ process.stdin.on('keypress', (ch, key) => {
 		if (debug) {
 			console.log('action "clickBoost"')
 		}
-		let iterNo = 0
-		while (Math.random() < CHANCE_AVERAGE * Math.sqrt(data.CLICK) * (1 / (iterNo + 1))) {
+		let iterNo = 1
+		while (Math.random() < CHANCE_AVERAGE * Math.sqrt(data.CLICK) * (1 / iterNo)) {
 			data.CLICK += 1
 			iterNo += 1
 		}
