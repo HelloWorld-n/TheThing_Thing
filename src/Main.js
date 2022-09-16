@@ -70,11 +70,11 @@ function goal(level) {
 function improve() {
 	data.XP += data.CLICK
 	while (true) {
-		data.GOAL = goal(data.LEVEL)
-		if (data.XP < data.GOAL) {
+		let goal$ = goal(data.LEVEL)
+		if (data.XP < goal$) {
 			break
 		}
-		data.XP -= data.GOAL
+		data.XP -= goal$
 		data.LEVEL += 1
 	}
 
@@ -84,7 +84,7 @@ function improve() {
 setInterval(() => {
 	improve()
 	console.log("\u001Bc")
-	console.log(displayData(data, true))
+	console.log(displayData({ ...data, "GOAL": goal(data.LEVEL) }, true, ["moreInfo"]))
 }, 1000)
 
 
