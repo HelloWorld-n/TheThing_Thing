@@ -4,7 +4,7 @@ const fs = require('fs');
 const Combinator = require('./Combinator.js')
 const AppUtil = require('./AppUtil.js')
 const TM_GOAL = 3
-const KEYPRESS_WAIT = 250
+const KEYPRESS_WAIT = 300
 const CHANCE_SMALL = 0.001
 const CHANCE_AVERAGE = 0.015
 const CHANCE_BIG = 0.225
@@ -110,7 +110,7 @@ process.stdin.on('keypress', (ch, key) => {
 			console.log('action "clickBoost"')
 		}
 		let iterNo = 1
-		while (Math.random() < CHANCE_AVERAGE * Math.sqrt(data.CLICK) * (1 / iterNo)) {
+		while (Math.random() < CHANCE_AVERAGE * Math.sqrt(data.CLICK) * (1 / Math.sqrt(iterNo))) {
 			data.CLICK += 1
 			iterNo += 1
 		}
